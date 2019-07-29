@@ -13,8 +13,6 @@ A CLI for the Cerberus API.
     1. [SDB](#commands-sdb)
     1. [Logout](#commands-logout)
 1. [Authentication](#auth)
-    1. [With a Token](#auth-token)
-    1. [With STS Auth](#auth-sts)
 1. [Configuration](#configuration)
     1. [Bash Completion](#configuration-autocomplete)
 
@@ -177,16 +175,6 @@ Removes any existing authentication tokens from the [keyring](#auth-notes).
 
 <a name="auth"></a>
 ## Authentication
-<a name="auth-token"></a>
-### With a Token:
-
-1. Set the `CERBERUS_TOKEN` environment variable, or use the `-t, --token` flags.
-1. Set the `CERBERUS_URL` environment variable, or use the `-u, --url` flags.
-
-Example: `$ cerberus -t <token> -u https://test.cerberus.example.com`
-
-<a name="auth-sts"></a>
-### With STS Auth:
 
 1. Set the `CERBERUS_REGION` environment variable, or use the `-r --region` flags.
 1. Set the `CERBERUS_URL` environment variable, or use the `-u, --url` flags.
@@ -203,7 +191,7 @@ expires. This keyring is supported by Linux (dbus), OS X, and Windows. If you wa
 
 <a name="configuration"></a>
 ## Configuration
-In addition to setting `CERBERUS_TOKEN`, `CERBERUS_URL`, and `CERBERUS_REGION` environment variables for authentication,
+In addition to setting `CERBERUS_URL` and `CERBERUS_REGION` environment variables for authentication,
 you can set your preferred editor with the `CERBERUS_EDITOR` environment variable for use with the `file edit` command.
 Some good editors to use are `atom`, `subl`, and `code`, provided these shell commands are installed.
 
