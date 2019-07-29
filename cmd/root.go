@@ -49,6 +49,7 @@ func init() {
 	rootCmd.PersistentFlags().StringVarP(&client.Url, "url", "u", tool.GetEnvVariable(tool.EnvCerbUrl), fmt.Sprintf("Cerberus server url / set the %s env variable", tool.EnvCerbUrl))
 	rootCmd.PersistentFlags().StringVarP(&client.Region, "region", "r", tool.GetEnvVariable(tool.EnvCerbRegion), fmt.Sprintf("AWS Cerberus region / set the %s env variable", tool.EnvCerbRegion))
 	rootCmd.PersistentFlags().StringVarP(&client.Token, "token", "t", tool.GetEnvVariable(tool.EnvCerbToken), fmt.Sprintf("Cerberus token      / set the %s env variable", tool.EnvCerbToken))
+	_ = rootCmd.PersistentFlags().MarkHidden("token")
 	rootCmd.PersistentFlags().BoolVarP(&Quiet, "quiet", "q", false, "set this flag for quiet mode (no usage or error messages for valid commands)")
 	rootCmd.Version = version
 	rootCmd.InitDefaultVersionFlag()

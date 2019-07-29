@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
 
-VERSION=${TAG_NAME}
+VERSION=${TRAVIS_TAG}
 
-if [ -z ${VERSION} ]
-then
-    echo "VERSION is null, aborting!"
-    exit 1
-fi
 
 package=cerberus-cli
 

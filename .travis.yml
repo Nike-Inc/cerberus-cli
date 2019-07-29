@@ -1,0 +1,18 @@
+language: go
+env:
+- GO111MODULE=on
+go:
+- 1.12.5
+install: true
+script:
+- "./lifecycle/build.sh"
+deploy:
+  provider: releases
+  api_key:
+    secure: QaP/flpTtkrCo48JN5XdJa9Uf11ncc1EkAn0S/fbBeOZZtzxBywCmzunrWwwOHT5JwIhGkXnTYDHlSvYwGfSZ41zZV45liGLV9gi+lTt5cMT/sd6Le5948rhOgU8YiRFyM3S76+JWn294z6Hw+e+idQAedvA2HuQJcc+b1lhmOht9UGIo2wGTx74oKjSO1pEqVpcnEU1hUIKl7ZCIflDaGkuoxjmlZZjHUJsQX4bDV5koVRMf/nxHdT0GhHfoKNxBa31MWKHDjyL59pBQye+JY8SvXlKgeL+9QlLRdD9d+KFfq9MXjrWvrlUMbTvfiCOdeRp+yuB6IlGRqcyx7DmpTXsQAthbPYSfylKDdspi3zvgV/yQEJIPJknWdIBuxNyCvavoMDisIMTlHZkg8vYJVTx2loae8z9/VeLbfCijR7LFR54wMDNTgd977LIqdl6APDE5RMjSyRM6NJP/6JfACIXScNNQaVmoJWIPUhyjbbNcyMv78e8tScAh8R59ywIGJlUAgrAbYmb5tUTuVk156GW0zj9PdqhR5G2TQYQHahEqmZ8JANj9Z2PlT7lerpYfBdUfbGYLCoYR14182dYD5og5z4tQ6JUN/u2ca/jZ3hg0p+etbEaYMlothSL1qj3nz03yNh+pD5Ve8TpwZBTzo5D/Tbt/FlXzwlo6yju1Lw=
+  file_glob: true
+  file: dist/*
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: Nike-Inc/cerberus-cli
