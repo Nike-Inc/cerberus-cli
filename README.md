@@ -20,7 +20,34 @@ A CLI for the Cerberus API.
 ## Installing
 <a name="installing-mac"></a>
 ### Mac
-1. Download a darwin-amd64 library.
+By far the easiest way to install `cerberus` is via [Homebrew](https://brew.sh), so you should pick that one.
+
+#### Homebrew
+1. [Install Homebrew](https://brew.sh)
+1. Add this tap to Homebrew:
+	
+	    $ brew tap nike-inc/nike
+		
+1. Install `cerberus`:
+	* If you use bash and would like bash completion:
+		```
+		$ brew install bash-completion
+		$ brew install cerberus-cli --with-completion
+		```    
+			
+		Make sure to follow the caveat displayed after installing `bash-completion` by adding this line to your
+		`~/.bash_profile`:
+		```
+		[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+		```
+
+	* If you don't use bash or would not like bash completion:
+		```
+		$ brew install cerberus-cli
+		```
+
+#### Without Homebrew
+1. Download a darwin-amd64 [library](https://github.com/Nike-Inc/cerberus-cli/releases/latest).
 1. Give the library executable permissions.
 
     Example:
@@ -80,12 +107,12 @@ Displays all possible commands that can be performed on secrets
     tools like [jq](https://stedolan.github.io/jq/).
     
     Example: `$ cerberus secret read app/mysdb/mysecret` might output
-    
-        {
-            "foo": "bar",
-            "asdf": "1234"
-        }
-        
+    ```
+    {
+        "foo": "bar",
+        "asdf": "1234"
+    }
+    ```
     and `$ cerberus secret read app/mysdb/mysecret | jq -r ".foo"` would output `bar`.
         
 * #### Write
@@ -198,7 +225,7 @@ Some good editors to use are `atom`, `subl`, and `code`, provided these shell co
 <a name="configuration-autocomplete"></a>
 ### Bash Completion
 If you use a bash shell, adding bash completion to the `cerberus` command can be done by downloading the
-`cerberus-completion.sh` script, and adding the following line to your `bash_profile`:
+`cerberus-completion.sh` script, and adding the following line to your `~/.bash_profile`:
 
 Example: `source ~/Downloads/cerberus-completion.sh`
 
