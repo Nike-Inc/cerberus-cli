@@ -45,6 +45,14 @@ By far the easiest way to install `cerberus` is via [Homebrew](https://brew.sh),
 		```
 		$ brew install cerberus-cli
 		```
+		
+1. Upgrade `cerberus` if needed with:
+        
+	    $ brew upgrade cerberus-cli
+        
+    or
+    
+	    $ brew upgrade cerberus-cli --with-completion
 
 #### Without Homebrew
 1. Download a darwin-amd64 [library](https://github.com/Nike-Inc/cerberus-cli/releases/latest).
