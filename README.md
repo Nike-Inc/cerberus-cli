@@ -90,7 +90,10 @@ curl -s https://raw.githubusercontent.com/Nike-Inc/cerberus-cli/master/install-c
 or if you are root (ex: Docker)
 
 ```sh
-curl -s https://raw.githubusercontent.com/Nike-Inc/cerberus-cli/master/install-cerberus-cli-linux.sh | sh
+FROM alpine:latest
+
+RUN apk --no-cache add curl jq
+RUN curl -s https://raw.githubusercontent.com/Nike-Inc/cerberus-cli/master/install-cerberus-cli-linux.sh | sh
 ```
 
 Alternatively you can always go to [the latest release page](https://github.com/Nike-Inc/cerberus-cli/releases/latest) and download the linux release and install manually.
