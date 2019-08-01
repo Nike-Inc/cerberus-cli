@@ -21,7 +21,7 @@ A CLI for the Cerberus API.
 ## Installing
 <a name="installing-mac"></a>
 ### Mac
-By far the easiest way to install `cerberus` is via [Homebrew](https://brew.sh), so you should pick that one.
+We recommend installing `cerberus` via [Homebrew](https://brew.sh).
 
 #### Homebrew
 1. [Install Homebrew](https://brew.sh)
@@ -93,7 +93,7 @@ or if you are root (ex: Docker)
 curl -s https://raw.githubusercontent.com/Nike-Inc/cerberus-cli/master/install-cerberus-cli-linux.sh | sh
 ```
 
-Alternativly you can alway go to [the latest release page](https://github.com/Nike-Inc/cerberus-cli/releases/latest) and download the linux release and install manually.
+Alternatively you can always go to [the latest release page](https://github.com/Nike-Inc/cerberus-cli/releases/latest) and download the linux release and install manually.
 
 <a name="commands"></a>
 ## Commands
