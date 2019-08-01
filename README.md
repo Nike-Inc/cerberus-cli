@@ -87,7 +87,9 @@ You can install the lib with our install script (requires `jq` and `curl`)
 curl -s https://raw.githubusercontent.com/Nike-Inc/cerberus-cli/master/install-cerberus-cli-linux.sh | sudo sh
 ```
 
-or if you are root (ex: Docker)
+Alternatively you can always go to [the latest release page](https://github.com/Nike-Inc/cerberus-cli/releases/latest) and download the linux release and install manually.
+
+#### Docker example
 
 ```sh
 FROM alpine:latest
@@ -95,8 +97,6 @@ FROM alpine:latest
 RUN apk --no-cache add curl jq
 RUN curl -s https://raw.githubusercontent.com/Nike-Inc/cerberus-cli/master/install-cerberus-cli-linux.sh | sh
 ```
-
-Alternatively you can always go to [the latest release page](https://github.com/Nike-Inc/cerberus-cli/releases/latest) and download the linux release and install manually.
 
 <a name="commands"></a>
 ## Commands
