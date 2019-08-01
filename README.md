@@ -5,6 +5,7 @@ A CLI for the Cerberus API.
 
 1. [Installing](#installing)
     1. [Mac](#installing-mac)
+    1. [Linux](#installing-linux)
 1. [Commands](#commands)
     1. [Help](#commands-help)
     1. [Version](#commands-version)
@@ -77,6 +78,22 @@ By far the easiest way to install `cerberus` is via [Homebrew](https://brew.sh),
 		export CERBERUS_URL=https://test.cerberus.example.com
 		export CERBERUS_EDITOR=code
 		
+<a name="installing-linux"></a>
+### Linux
+
+You can install the lib with our install script (requires `jq` and `curl`)
+
+```sh
+curl -s https://raw.githubusercontent.com/Nike-Inc/cerberus-cli/master/install-cerberus-cli-linux.sh | sudo sh
+```
+
+or if you are root (ex: Docker)
+
+```sh
+curl -s https://raw.githubusercontent.com/Nike-Inc/cerberus-cli/master/install-cerberus-cli-linux.sh | sh
+```
+
+Alternativly you can alway go to [the latest release page](https://github.com/Nike-Inc/cerberus-cli/releases/latest) and download the linux release and install manually.
 
 <a name="commands"></a>
 ## Commands
