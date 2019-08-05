@@ -5,6 +5,7 @@ A CLI for the Cerberus API.
 
 1. [Installing](#installing)
     1. [Mac](#installing-mac)
+    1. [Linux](#installing-linux)
 1. [Commands](#commands)
     1. [Help](#commands-help)
     1. [Version](#commands-version)
@@ -20,7 +21,7 @@ A CLI for the Cerberus API.
 ## Installing
 <a name="installing-mac"></a>
 ### Mac
-By far the easiest way to install `cerberus` is via [Homebrew](https://brew.sh), so you should pick that one.
+We recommend installing `cerberus` via [Homebrew](https://brew.sh).
 
 #### Homebrew
 1. [Install Homebrew](https://brew.sh)
@@ -45,6 +46,14 @@ By far the easiest way to install `cerberus` is via [Homebrew](https://brew.sh),
 		```
 		$ brew install cerberus-cli
 		```
+		
+1. Upgrade `cerberus` if needed with:
+        
+	    $ brew upgrade cerberus-cli
+        
+    or
+    
+	    $ brew upgrade cerberus-cli --with-completion
 
 #### Without Homebrew
 1. Download a darwin-amd64 [library](https://github.com/Nike-Inc/cerberus-cli/releases/latest).
@@ -69,6 +78,25 @@ By far the easiest way to install `cerberus` is via [Homebrew](https://brew.sh),
 		export CERBERUS_URL=https://test.cerberus.example.com
 		export CERBERUS_EDITOR=code
 		
+<a name="installing-linux"></a>
+### Linux
+
+You can install the lib with our install script (requires `jq` and `curl`)
+
+```sh
+curl -s https://raw.githubusercontent.com/Nike-Inc/cerberus-cli/master/install-cerberus-cli-linux.sh | sudo sh
+```
+
+Alternatively you can always go to [the latest release page](https://github.com/Nike-Inc/cerberus-cli/releases/latest) and download the linux release and install manually.
+
+#### Docker example
+
+```sh
+FROM alpine:latest
+
+RUN apk --no-cache add curl jq
+RUN curl -s https://raw.githubusercontent.com/Nike-Inc/cerberus-cli/master/install-cerberus-cli-linux.sh | sh
+```
 
 <a name="commands"></a>
 ## Commands
