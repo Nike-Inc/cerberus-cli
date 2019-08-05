@@ -29,11 +29,19 @@ var rootCmd = &cobra.Command{
 	Use:   "cerberus-cli",
 	Short: "A CLI for Cerberus",
 	Long:  `cerberus-cli is a CLI for Cerberus that can be used to perform basic tasks`,
-	PersistentPreRun: func(cmd *cobra.Command, args []string) {
+	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 		if Quiet {
 			cmd.SilenceErrors = true
 			cmd.SilenceUsage = true
 		}
+		if client.Url == "" && client.Region == "" {
+			return fmt.Errorf("Cerberus server url and AWS region not found. See [Global Flags] section below")
+		} else if client.Url == "" {
+			return fmt.Errorf("Cerberus server url not found. See [Global Flags] section below")
+		} else if client.Region == "" {
+			return fmt.Errorf("AWS Cerberus region not found. See [Global Flags] section below")
+		}
+		return nil
 	},
 }
 
