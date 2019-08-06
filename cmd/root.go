@@ -19,16 +19,15 @@ package cmd
 import (
 	"fmt"
 	"os"
-
 	"cerberus-cli/client"
 	"cerberus-cli/tool"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "cerberus-cli",
+	Use:   "cerberus",
 	Short: "A CLI for Cerberus",
-	Long:  `cerberus-cli is a CLI for Cerberus that can be used to perform basic tasks`,
+	Long:  `The Cerberus Command Line Interface is a tool to manage your Cerberus secrets, files, and SDBs.`,
 	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 		if Quiet {
 			cmd.SilenceErrors = true

@@ -29,8 +29,8 @@ func init() {
 
 var versionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "Print the version number of cerberus-cli",
-	Long:  `All software has versions. This is cerberus-cli's.`,
+	Short: "Display the version number of this tool",
+	Long:  `Display the version number of this tool`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("cerberus-cli " + version)
 	},

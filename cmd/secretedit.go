@@ -20,7 +20,6 @@ import (
 	"bufio"
 	"cerberus-cli/client"
 	"cerberus-cli/tool"
-	//"encoding/json"
 	"fmt"
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v2"
@@ -78,7 +77,8 @@ var secreteditCmd = &cobra.Command{
 
 func init() {
 	secretCmd.AddCommand(secreteditCmd)
-	secreteditCmd.Flags().StringP("editor", "e", tool.GetEnvVariable(tool.EnvPrefEditor), "(Optional) editor to use / set the CERBERUS_EDITOR env variable")
+	secreteditCmd.Flags().StringP("editor", "e", tool.GetEnvVariable(tool.EnvPrefEditor),
+		"(Optional) editor to use / set the CERBERUS_EDITOR env variable")
 }
 
 func GetSecretStringWithFullPath(path string) (string, error) {
@@ -148,7 +148,8 @@ func EditSecretAndUpload(secret string, editor string, path string, myFile *os.F
 	var myCmd *exec.Cmd
 	if editor != "vi" && editor != "vim" && editor != "nano" && editor != "emacs" {
 		myCmd = exec.Command(editor, "--wait", tempfile.Name())
-		fmt.Println("A --wait flag has been added to your editor command. If supported, edits will be uploaded upon saving and closing the file.")
+		fmt.Println("A --wait flag has been added to your editor command. If supported, edits will be uploaded " +
+			"upon saving and closing the file.")
 	} else {
 		myCmd = exec.Command(editor, tempfile.Name())
 	}
@@ -180,6 +181,9 @@ func EditSecretAndUpload(secret string, editor string, path string, myFile *os.F
 		text := scanner.Text()
 		if text == "yes" {
 			return EditSecretAndUpload("", editor, path, tempfile)
+		} else if text == "no" {
+			fmt.Println("Edit secret aborted. Deleted temporary file.")
+			return nil
 		} else {
 			return fmt.Errorf("failed to parse edited secret: %v", err)
 		}
@@ -193,6 +197,9 @@ func EditSecretAndUpload(secret string, editor string, path string, myFile *os.F
 			text := scanner.Text()
 			if text == "yes" {
 				return EditSecretAndUpload("", editor, path, tempfile)
+			} else if text == "no" {
+				fmt.Println("Edit secret aborted. Deleted temporary file.")
+				return nil
 			} else {
 				return fmt.Errorf("failed to write secret to path %s: %v", path, err)
 			}
@@ -203,6 +210,9 @@ func EditSecretAndUpload(secret string, editor string, path string, myFile *os.F
 		text := scanner.Text()
 		if text == "yes" {
 			return EditSecretAndUpload("", editor, path, tempfile)
+		} else if text == "no" {
+			fmt.Println("Edit secret aborted. Deleted temporary file.")
+			return nil
 		} else {
 			return fmt.Errorf("no key/value pairs to write")
 		}
