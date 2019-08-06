@@ -261,8 +261,9 @@ expires. This keyring is supported by Linux (dbus), OS X, and Windows. If you wa
 <a name="configuration"></a>
 ## Configuration
 In addition to setting `CERBERUS_URL` and `CERBERUS_REGION` environment variables for authentication,
-you can set your preferred editor with the `CERBERUS_EDITOR` environment variable for use with the `file edit` command.
-Some good editors to use are `atom`, `subl`, and `code`, provided these shell commands are installed.
+you can set your preferred editor with the `CERBERUS_EDITOR` environment variable for use with the `file edit` and 
+`secret edit` commands. Some good editors to use are `atom`, `subl`, and `code`, provided these shell commands are
+installed.
 
 <a name="configuration-autocomplete"></a>
 ### Bash Completion
