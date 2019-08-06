@@ -155,6 +155,20 @@ Displays all possible commands that can be performed on secrets
     Given a complete secure data path, delete the corresponding secret if it exists.
     
     Example: `$ cerberus secret delete app/mysdb/mysecret`
+    
+* #### Edit
+    Given a complete secure data path, temporarily download a secret if it exists, open preferred editor, and upload 
+    edits to the same secure data path. Preferred editor can be set using the `CERBERUS_EDITOR` environment variable
+    or with `-e, --editor` flags.
+    
+    When a secret is downloaded, the editor will open a `.yaml`file with the key value pairs of the secret. Make any
+    necessary edits using `yaml` formatting. If any errors occur while parsing the edited secret or uploading to
+    Cerberus, you will be prompted to open the temporary file again to fix the issue and try uploading again.
+    
+    Example: `$ cerberus secret edit app/mysdb/mysecret -e atom`
+    
+    If a path is given that does not already exist in Cerberus, you will be prompted instead to create a new secret
+    at that secure data path.
 
 <a name="commands-file"></a>
 ### File
@@ -231,7 +245,7 @@ Removes any existing authentication tokens from the [keyring](#auth-notes).
 <a name="auth"></a>
 ## Authentication
 
-1. Set the `CERBERUS_REGION` environment variable, or use the `-r --region` flags.
+1. Set the `CERBERUS_REGION` environment variable, or use the `-r, --region` flags.
 1. Set the `CERBERUS_URL` environment variable, or use the `-u, --url` flags.
 
 Example: `$ cerberus -r us-west-2 -u https://test.cerberus.example.com`
@@ -247,8 +261,9 @@ expires. This keyring is supported by Linux (dbus), OS X, and Windows. If you wa
 <a name="configuration"></a>
 ## Configuration
 In addition to setting `CERBERUS_URL` and `CERBERUS_REGION` environment variables for authentication,
-you can set your preferred editor with the `CERBERUS_EDITOR` environment variable for use with the `file edit` command.
-Some good editors to use are `atom`, `subl`, and `code`, provided these shell commands are installed.
+you can set your preferred editor with the `CERBERUS_EDITOR` environment variable for use with the `file edit` and 
+`secret edit` commands. Some good editors to use are `atom`, `subl`, and `code`, provided these shell commands are
+installed.
 
 <a name="configuration-autocomplete"></a>
 ### Bash Completion

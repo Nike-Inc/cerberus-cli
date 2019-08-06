@@ -14,24 +14,17 @@
  *  limitations under the License.
  */
 
-package cmd
+package tool
 
 import (
-	"fmt"
-	"github.com/spf13/cobra"
+	"gopkg.in/yaml.v2"
 )
 
-var version string
-
-func init() {
-	rootCmd.AddCommand(versionCmd)
-}
-
-var versionCmd = &cobra.Command{
-	Use:   "version",
-	Short: "Display the version number of this tool",
-	Long:  `Display the version number of this tool`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("cerberus-cli " + version)
-	},
+func ToYAML(i interface{}) (string, error) {
+	// YAML the result
+	yamlOutput, err := yaml.Marshal(i)
+	if err != nil {
+		return "", err
+	}
+	return string(yamlOutput), nil
 }
