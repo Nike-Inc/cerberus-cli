@@ -31,6 +31,7 @@ var Url string
 const SERVICE string = "cerberus-cli"
 const CERBTOKEN string = "X-Cerberus-Token"
 const EXPIRYTIME string = "Token-Expiry-Time"
+const CERBURL string = "Cerberus-Url"
 const LAYOUT string = "2006-01-02 15:04:05.999999999 -0700 MST"
 
 func GetClient() (*cerberus.Client, error) {
@@ -40,6 +41,16 @@ func GetClient() (*cerberus.Client, error) {
 		return authenticate()
 	} else {
 		// token exists
+		saved_url, err := keyring.Get(SERVICE, CERBURL)
+		if err != nil {
+			return authenticate()
+		}
+
+		// supplied URL does not match keyring URL
+		if saved_url != Url {
+			return authenticate()
+		}
+
 		expiry, err := keyring.Get(SERVICE, EXPIRYTIME)
 		if err != nil {
 			return authenticate()
@@ -125,6 +136,13 @@ func saveTokenToKeyring(cl *cerberus.Client) error {
 	err = keyring.Set(SERVICE, EXPIRYTIME, exp.Format(LAYOUT))
 	if err != nil {
 		_ = keyring.Delete(SERVICE, CERBTOKEN)
+		return err
+	}
+
+	err = keyring.Set(SERVICE, CERBURL, Url)
+	if err != nil {
+		_ = keyring.Delete(SERVICE, CERBTOKEN)
+		_ = keyring.Delete(SERVICE, EXPIRYTIME)
 		return err
 	}
 	return nil
