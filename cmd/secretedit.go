@@ -54,13 +54,13 @@ var secreteditCmd = &cobra.Command{
 			return err
 		}
 		if err != nil {
-			fmt.Printf("Given path does not exist. Attempt to create new secret at path %s? [yes/no] ", path)
+			fmt.Printf("Given path does not exist. Attempt to create new secret at path %s? [y/N] ", path)
 			scanner := bufio.NewScanner(os.Stdin)
 			scanner.Scan()
-			text := scanner.Text()
-			if text == "yes" {
+			text := strings.ToLower(scanner.Text())
+			if text == "yes" || text == "y"{
 				output = ""
-			} else if text == "no" {
+			} else if text == "no" || text == "n" || text == "" {
 				return nil
 			} else {
 				return fmt.Errorf("Invalid option")
@@ -176,12 +176,12 @@ func EditSecretAndUpload(secret string, editor string, path string, myFile *os.F
 	var kvpairs map[string]interface{}
 	err = yaml.Unmarshal(edits, &kvpairs)
 	if err != nil {
-		fmt.Printf("Failed to parse edited secret. Try editing again? [yes/no] ")
+		fmt.Printf("Failed to parse edited secret. Try editing again? [y/N] ")
 		scanner.Scan()
-		text := scanner.Text()
-		if text == "yes" {
+		text := strings.ToLower(scanner.Text())
+		if text == "yes" || text == "y" {
 			return EditSecretAndUpload("", editor, path, tempfile)
-		} else if text == "no" {
+		} else if text == "no" || text == "n" || text == "" {
 			fmt.Println("Edit secret aborted. Deleted temporary file.")
 			return nil
 		} else {
@@ -192,12 +192,12 @@ func EditSecretAndUpload(secret string, editor string, path string, myFile *os.F
 	if len(kvpairs) > 0 {
 		err = WriteSecret(path, kvpairs)
 		if err != nil {
-			fmt.Printf("Failed to write secret to path %s: %v. Try again? [yes/no] ", path, err)
+			fmt.Printf("Failed to write secret to path %s: %v. Try again? [y/N] ", path, err)
 			scanner.Scan()
-			text := scanner.Text()
-			if text == "yes" {
+			text := strings.ToLower(scanner.Text())
+			if text == "yes" || text == "y" {
 				return EditSecretAndUpload("", editor, path, tempfile)
-			} else if text == "no" {
+			} else if text == "no" || text == "n" || text == "" {
 				fmt.Println("Edit secret aborted. Deleted temporary file.")
 				return nil
 			} else {
@@ -205,12 +205,12 @@ func EditSecretAndUpload(secret string, editor string, path string, myFile *os.F
 			}
 		}
 	} else {
-		fmt.Printf("No key/value pairs to write. Try again? [yes/no] ")
+		fmt.Printf("No key/value pairs to write. Try again? [y/N] ")
 		scanner.Scan()
-		text := scanner.Text()
-		if text == "yes" {
+		text := strings.ToLower(scanner.Text())
+		if text == "yes" || text == "y" {
 			return EditSecretAndUpload("", editor, path, tempfile)
-		} else if text == "no" {
+		} else if text == "no" || text == "n" || text == "" {
 			fmt.Println("Edit secret aborted. Deleted temporary file.")
 			return nil
 		} else {
