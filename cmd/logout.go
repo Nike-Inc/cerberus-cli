@@ -36,8 +36,12 @@ var logoutCmd = &cobra.Command{
 		if err2 != nil {
 			fmt.Println("Expiry time not found in keyring")
 		}
+		err3 := keyring.Delete(client.SERVICE, client.CERBURL)
+		if err3 != nil {
+			fmt.Println("Url not found in keyring")
+		}
 
-		if err1 == nil && err2 == nil {
+		if err1 == nil && err2 == nil && err3 == nil{
 			fmt.Println("Session cleared")
 		}
 		return nil
