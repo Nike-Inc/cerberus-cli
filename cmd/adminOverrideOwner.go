@@ -32,7 +32,7 @@ import (
 )
 
 var adminOverrideOwner = &cobra.Command{
-	Use:   "override-owner <secure file path>",
+	Use:   "override-owner",
 	Short: "override the owner of an SDB",
 	Long:  "override the owner of an SDB",
 	Args:  cobra.ExactArgs(0),
