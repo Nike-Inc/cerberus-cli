@@ -12,6 +12,7 @@ A CLI for the Cerberus API.
     1. [Secret](#commands-secret)
     1. [File](#commands-file)
     1. [SDB](#commands-sdb)
+    1. [Admin](#commands-admin)
     1. [Logout](#commands-logout)
 1. [Authentication](#auth)
 1. [Configuration](#configuration)
@@ -234,6 +235,20 @@ Displays all possible commands that can be performed on SDBs
     terminal.
     
     Example: `$ cerberus sdb delete app/mysdb`
+
+<a name="commands-admin"></a>
+### Admin
+
+Displays all possible commands that can be performed as an admin
+
+`$ cerberus admin`
+
+* #### Override SDB Owner
+    Override the owner of an existing SDB to a new owner. The following flags must be specified: the name of the sdb
+    with `-s, --sdb` and the name of the new owner with `-o, --owner`. Current metadata of the SDB will be displayed,
+    as a well as a prompt confirming the change in ownership.
+    
+    Example: `$ cerberus admin override-owner -s mysdb -o Lst.MyTeam`
 
 <a name="commands-logout"></a>
 ### Logout
