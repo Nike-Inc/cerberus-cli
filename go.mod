@@ -4,7 +4,7 @@ go 1.12
 
 require (
 	github.com/Nike-Inc/cerberus-go-client v2.1.0+incompatible
-	github.com/aws/aws-sdk-go v1.20.2 // indirect
+	github.com/aws/aws-sdk-go v1.20.2
 	github.com/danieljoos/wincred v1.0.2 // indirect
 	github.com/godbus/dbus v4.1.0+incompatible // indirect
 	github.com/hashicorp/vault/api v1.0.2 // indirect

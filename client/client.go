@@ -17,9 +17,11 @@
 package client
 
 import (
+	"crypto/sha256"
 	"fmt"
 	"github.com/Nike-Inc/cerberus-go-client/auth"
 	"github.com/Nike-Inc/cerberus-go-client/cerberus"
+	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/zalando/go-keyring"
 	"time"
 )
@@ -32,7 +34,10 @@ const SERVICE string = "cerberus-cli"
 const CERBTOKEN string = "X-Cerberus-Token"
 const EXPIRYTIME string = "Token-Expiry-Time"
 const CERBURL string = "Cerberus-Url"
+const AWSHASH string = "AWS-Keys-Hash"
 const LAYOUT string = "2006-01-02 15:04:05.999999999 -0700 MST"
+
+var newAwsHash string
 
 func GetClient() (*cerberus.Client, error) {
 	cerbToken, err := keyring.Get(SERVICE, CERBTOKEN)
@@ -41,6 +46,21 @@ func GetClient() (*cerberus.Client, error) {
 		return authenticate()
 	} else {
 		// token exists
+		existing_awshash, err := keyring.Get(SERVICE, AWSHASH)
+		if err != nil {
+			return authenticate()
+		}
+
+		newAwsHash, err = getAndHashAWScreds()
+		if err != nil {
+			return nil, err
+		}
+
+		// existing hash does not match new hash
+		if newAwsHash != existing_awshash {
+			return authenticate()
+		}
+
 		saved_url, err := keyring.Get(SERVICE, CERBURL)
 		if err != nil {
 			return authenticate()
@@ -145,5 +165,40 @@ func saveTokenToKeyring(cl *cerberus.Client) error {
 		_ = keyring.Delete(SERVICE, EXPIRYTIME)
 		return err
 	}
+
+	if newAwsHash == "" {
+		newAwsHash, err = getAndHashAWScreds()
+		if err != nil {
+			_ = keyring.Delete(SERVICE, CERBTOKEN)
+			_ = keyring.Delete(SERVICE, EXPIRYTIME)
+			return err
+		}
+	}
+	err = keyring.Set(SERVICE, AWSHASH, newAwsHash)
+	if err != nil {
+		_ = keyring.Delete(SERVICE, CERBTOKEN)
+		_ = keyring.Delete(SERVICE, EXPIRYTIME)
+		_ = keyring.Delete(SERVICE, CERBURL)
+		return err
+	}
 	return nil
+}
+
+func getAndHashAWScreds() (string, error){
+	creds := defaults.Get().Config.Credentials
+	value, err := creds.Get()
+	if err != nil {
+		return "", fmt.Errorf("No AWS Credentials found: %v", err)
+	}
+	accessKeyID := value.AccessKeyID
+	secretAccessKey := value.SecretAccessKey
+	if len(accessKeyID) == 0 || len(secretAccessKey) == 0 {
+		return "", fmt.Errorf("No AWS accessKeyID/secretAccessKey found")
+	}
+
+	h := sha256.New()
+	h.Write([]byte(accessKeyID + secretAccessKey))
+	bs := h.Sum(nil)
+	hashed_string := fmt.Sprintf("%x", bs)
+	return hashed_string, nil
 }
