@@ -9,7 +9,7 @@ package_split=(${package//\// })
 package_name=${package_split[*]: -1}
 
 platforms=("windows/amd64" "darwin/amd64" "linux/amd64")
-ldflag="-X cerberus-cli/cmd.version=${VERSION}"
+ldflag="-X cerberus-cli/tool.CliVersion=${VERSION}"
 
 echo 'building executable for local machine'
 go build -ldflags "$ldflag"

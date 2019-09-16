@@ -29,7 +29,6 @@ var sdblistCmd = &cobra.Command{
 	Long:  `list sdbs`,
 	Args:  cobra.ExactArgs(0),
 	RunE: func(cmd *cobra.Command, args []string) error {
-
 		cl, err := client.GetClient()
 		if err != nil {
 			return err
