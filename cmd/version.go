@@ -22,7 +22,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var version string = tool.CliVersion
+var version = tool.CliVersion
 
 func init() {
 	rootCmd.AddCommand(VersionCmd)

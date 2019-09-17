@@ -20,6 +20,7 @@ import (
 	"cerberus-cli/tool"
 	"crypto/sha256"
 	"fmt"
+	"github.com/Nike-Inc/cerberus-go-client/api"
 	"github.com/Nike-Inc/cerberus-go-client/auth"
 	"github.com/Nike-Inc/cerberus-go-client/cerberus"
 	"github.com/aws/aws-sdk-go/aws/defaults"
@@ -111,13 +112,12 @@ func GetClient() (*cerberus.Client, error) {
 
 func getDefaultHeader() http.Header {
 	defaultHeader := http.Header{}
-	defaultHeader.Set("X-Cerberus-Client", fmt.Sprintf("%s/%s", "Cerberus-Cli", tool.CliVersion))
+	defaultHeader.Set("X-Cerberus-Client", fmt.Sprintf("%s/%s %s", "Cerberus-Cli", tool.CliVersion, api.ClientHeader))
 	return defaultHeader
 }
 
 func authenticate() (*cerberus.Client, error) {
 	var authMethod auth.Auth
-
 	var err error
 	if Token != "" {
 		if authMethod, err = auth.NewTokenAuth(Url, Token); err != nil {

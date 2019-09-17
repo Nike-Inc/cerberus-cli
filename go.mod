@@ -3,7 +3,7 @@ module cerberus-cli
 go 1.12
 
 require (
-	github.com/Nike-Inc/cerberus-go-client v2.1.1-0.20190916180759-f1164c3a1f02+incompatible
+	github.com/Nike-Inc/cerberus-go-client v2.2.0+incompatible
 	github.com/aws/aws-sdk-go v1.20.2
 	github.com/danieljoos/wincred v1.0.2 // indirect
 	github.com/godbus/dbus v4.1.0+incompatible // indirect
