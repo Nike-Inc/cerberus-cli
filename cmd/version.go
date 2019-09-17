@@ -17,17 +17,18 @@
 package cmd
 
 import (
+	"cerberus-cli/tool"
 	"fmt"
 	"github.com/spf13/cobra"
 )
 
-var version string
+var version = tool.CliVersion
 
 func init() {
-	rootCmd.AddCommand(versionCmd)
+	rootCmd.AddCommand(VersionCmd)
 }
 
-var versionCmd = &cobra.Command{
+var VersionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Display the version number of this tool",
 	Long:  `Display the version number of this tool`,
@@ -35,3 +36,4 @@ var versionCmd = &cobra.Command{
 		fmt.Println("cerberus-cli " + version)
 	},
 }
+
