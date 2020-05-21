@@ -288,3 +288,6 @@ If you use a bash shell, adding bash completion to the `cerberus` command can be
 Example: `source ~/Downloads/cerberus-completion.sh`
 
 Note: the `cerberus` command must be [installed](#installing) for bash completion to work.
+
+### Update Releases
+Installation of `cerberus` is set up through Homebrew. When updating the `cerberus` version, you also need to update it in the [Nike Homebrew Tap](https://github.com/Nike-Inc/homebrew-nike).
