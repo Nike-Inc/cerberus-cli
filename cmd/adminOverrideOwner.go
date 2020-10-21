@@ -22,7 +22,7 @@ import (
 	"cerberus-cli/client"
 	"encoding/json"
 	"fmt"
-	"github.com/Nike-Inc/cerberus-go-client/api"
+	"github.com/Nike-Inc/cerberus-go-client/v2/api"
 	"github.com/spf13/cobra"
 	"io"
 	"io/ioutil"
@@ -84,10 +84,10 @@ var adminOverrideOwner = &cobra.Command{
 		lastupdatedBy := metadata.LastUpdatedBy
 		lastupdatedTs := metadata.LastUpdated
 
-		fmt.Printf("SDB Name: %s\n" +
-			"Description: %s\n" +
-			"Current Owner: %s\n" +
-			"Created by: %s on %s\n" +
+		fmt.Printf("SDB Name: %s\n"+
+			"Description: %s\n"+
+			"Current Owner: %s\n"+
+			"Created by: %s on %s\n"+
 			"Last updated by %s on %s\n\n",
 			sdbname, description, curowner, createdBy, createdTs, lastupdatedBy, lastupdatedTs)
 
@@ -98,7 +98,7 @@ var adminOverrideOwner = &cobra.Command{
 		text := strings.ToLower(scanner.Text())
 		if text == "yes" || text == "y" {
 			fmt.Println("Continuing with override of SDB owner")
-		} else if text == "no"  || text == "n" || text == ""{
+		} else if text == "no" || text == "n" || text == "" {
 			fmt.Println("Cancelling override of SDB owner")
 			return nil
 		} else {
@@ -106,7 +106,7 @@ var adminOverrideOwner = &cobra.Command{
 		}
 
 		requestBody, err := json.Marshal(map[string]string{
-			"name": sdbname,
+			"name":  sdbname,
 			"owner": newowner,
 		})
 
