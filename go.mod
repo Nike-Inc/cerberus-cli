@@ -1,6 +1,6 @@
 module cerberus-cli
 
-go 1.12
+go 1.15
 
 require (
 	github.com/Nike-Inc/cerberus-go-client/v3 v3.0.0
