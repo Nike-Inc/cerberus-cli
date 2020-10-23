@@ -22,7 +22,7 @@ import (
 	"cerberus-cli/client"
 	"encoding/json"
 	"fmt"
-	"github.com/Nike-Inc/cerberus-go-client/v2/api"
+	"github.com/Nike-Inc/cerberus-go-client/v3/api"
 	"github.com/spf13/cobra"
 	"io"
 	"io/ioutil"
