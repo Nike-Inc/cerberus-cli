@@ -1,8 +1,6 @@
 language: go
-env:
-- GO111MODULE=on
 go:
-- 1.12.5
+- 1.15.x
 install: true
 script:
 - "./lifecycle/build.sh"

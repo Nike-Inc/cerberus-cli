@@ -20,9 +20,9 @@ import (
 	"cerberus-cli/tool"
 	"crypto/sha256"
 	"fmt"
-	"github.com/Nike-Inc/cerberus-go-client/api"
-	"github.com/Nike-Inc/cerberus-go-client/auth"
-	"github.com/Nike-Inc/cerberus-go-client/cerberus"
+	"github.com/Nike-Inc/cerberus-go-client/v3/api"
+	"github.com/Nike-Inc/cerberus-go-client/v3/auth"
+	"github.com/Nike-Inc/cerberus-go-client/v3/cerberus"
 	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/zalando/go-keyring"
 	"net/http"
@@ -193,7 +193,7 @@ func saveTokenToKeyring(cl *cerberus.Client) error {
 	return nil
 }
 
-func getAndHashAWScreds() (string, error){
+func getAndHashAWScreds() (string, error) {
 	creds := defaults.Get().Config.Credentials
 	value, err := creds.Get()
 	if err != nil {

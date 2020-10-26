@@ -19,8 +19,8 @@ package cmd
 import (
 	"cerberus-cli/client"
 	"fmt"
-	"github.com/Nike-Inc/cerberus-go-client/api"
-	"github.com/Nike-Inc/cerberus-go-client/cerberus"
+	"github.com/Nike-Inc/cerberus-go-client/v3/api"
+	"github.com/Nike-Inc/cerberus-go-client/v3/cerberus"
 	"github.com/spf13/cobra"
 	"strings"
 )
