@@ -1,4 +1,4 @@
-# github.com/Nike-Inc/cerberus-go-client/v3 v3.0.1-ALPHA
+# github.com/Nike-Inc/cerberus-go-client/v3 v3.0.1
 ## explicit
 github.com/Nike-Inc/cerberus-go-client/v3/api
 github.com/Nike-Inc/cerberus-go-client/v3/auth

@@ -5,6 +5,8 @@ github.com/Nike-Inc/cerberus-go-client/v3 v3.0.0 h1:rSiWwlkoVbQbZLR6CXPOdvtu8goz
 github.com/Nike-Inc/cerberus-go-client/v3 v3.0.0/go.mod h1:IbRl12WAQi/0EMOJgxMfTgTceWcMb9gGA0RJKaz1gIw=
 github.com/Nike-Inc/cerberus-go-client/v3 v3.0.1-ALPHA h1:H6E0aq4b5Syp4t503PODeZaAd0FuKl+Szmq2ZY/Cn6Q=
 github.com/Nike-Inc/cerberus-go-client/v3 v3.0.1-ALPHA/go.mod h1:IbRl12WAQi/0EMOJgxMfTgTceWcMb9gGA0RJKaz1gIw=
+github.com/Nike-Inc/cerberus-go-client/v3 v3.0.1 h1:I+GtoEsVqVgmrz2CUwjSNK7KHmhK9Jho7VbetA0pWqU=
+github.com/Nike-Inc/cerberus-go-client/v3 v3.0.1/go.mod h1:IbRl12WAQi/0EMOJgxMfTgTceWcMb9gGA0RJKaz1gIw=
 github.com/armon/consul-api v0.0.0-20180202201655-eb2c6b5be1b6/go.mod h1:grANhF5doyWs3UAsr3K4I6qtAmlQcZDesFNEHPZAzj8=
 github.com/armon/go-metrics v0.0.0-20180917152333-f0300d1749da/go.mod h1:Q73ZrmVTwzkszR9V5SSuryQ31EELlFMUz1kKyl939pY=
 github.com/armon/go-radix v0.0.0-20180808171621-7fddfc383310/go.mod h1:ufUuZ+zHj4x4TnLV4JWEpy2hxWSpsRywHrMgIH9cCH8=
