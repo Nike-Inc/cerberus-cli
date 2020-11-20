@@ -1,6 +1,9 @@
 # cerberus-cli
 A CLI for the Cerberus API.
 
+![Build](https://github.com/Nike-Inc/cerberus-cli/workflows/Build/badge.svg?branch=master)
+[![codecov](https://codecov.io/gh/Nike-Inc/cerberus-cli/branch/master/graph/badge.svg?token=JSZ4CN8844)](https://codecov.io/gh/Nike-Inc/cerberus-cli)
+
 **Table of Contents**
 
 1. [Installing](#installing)
