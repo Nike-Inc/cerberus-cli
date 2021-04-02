@@ -263,6 +263,24 @@ Removes any existing authentication tokens from the [keyring](#auth-notes).
 <a name="auth"></a>
 ## Authentication
 
+### Basic AWS Authentication
+
+The Cerberus CLI uses the AWS Default Provider Chain to provider AWS Authentication. The default provider chain looks for credentials in the following order:
+1. Environment variables.
+2. Shared credentials file.
+3. If your application uses an ECS task definition or RunTask API operation, IAM role for tasks.
+4. If your application is running on an Amazon EC2 instance, IAM role for Amazon EC2. 
+
+For more information, click [here](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html)
+
+### Using non-default AWS profile
+
+To use a non-default role, set in the shell environment `AWS_PROFILE` and the client will use the profile creds that are set in that variable. 
+
+So for example, if you have a `[foo]` , a `[bar]`, and a `[default]` profile, and if you want to use the `bar` profile to authenticate with the CLI, run `export AWS_PROFILE=bar` and the CLI will use the `bar` profile through the default provider chain.
+
+### Authenticating with the Cerberus CLI
+
 1. Set the `CERBERUS_REGION` environment variable, or use the `-r, --region` flags.
 1. Set the `CERBERUS_URL` environment variable, or use the `-u, --url` flags.
 
