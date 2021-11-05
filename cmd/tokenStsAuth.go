@@ -30,14 +30,14 @@ var tokenStsAuthCmd = &cobra.Command{
 		cl, err := client.GetClient()
 		if err != nil {
 			return fmt.Errorf("err: %s", err)
-		}else{
-			token, err := cl.Authentication.GetToken(nil)
-			if err != nil{
-				return fmt.Errorf("Could not retrive client token! err: %s", err)
-			}else{
-				fmt.Println(token)
-			}
 		}
+
+		token, err := cl.Authentication.GetToken(nil)
+		if err != nil{
+			return fmt.Errorf("Could not retrive client token! err: %s", err)
+		}
+
+		fmt.Println(token)
 		return nil
 	},
 }
