@@ -33,6 +33,10 @@ var rootCmd = &cobra.Command{
 			cmd.SilenceErrors = true
 			cmd.SilenceUsage = true
 		}
+		// url and region are not required for version
+		if cmd.Name() == "version" {
+			return nil
+		}
 		if client.Url == "" && client.Region == "" {
 			return fmt.Errorf("Cerberus server url and AWS region not found. See [Global Flags] section below")
 		} else if client.Url == "" {
@@ -58,9 +62,9 @@ func init() {
 	rootCmd.PersistentFlags().StringVarP(&client.Token, "token", "t", tool.GetEnvVariable(tool.EnvCerbToken), fmt.Sprintf("Cerberus token      / set the %s env variable", tool.EnvCerbToken))
 	_ = rootCmd.PersistentFlags().MarkHidden("token")
 	rootCmd.PersistentFlags().BoolVarP(&Quiet, "quiet", "q", false, "set this flag for quiet mode (no usage or error messages for valid commands)")
-	rootCmd.Version = version
+	rootCmd.Version = tool.CliVersion
 	rootCmd.InitDefaultVersionFlag()
-	rootCmd.SetVersionTemplate(fmt.Sprintln("cerberus-cli " + version))
+	rootCmd.SetVersionTemplate(fmt.Sprintln(tool.CliVersionMsg))
 	rootCmd.SetErr(os.Stderr)
 	rootCmd.SetOut(os.Stdout)
 	rootCmd.SetIn(os.Stdin)

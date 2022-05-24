@@ -22,8 +22,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var version = tool.CliVersion
-
 func init() {
 	rootCmd.AddCommand(VersionCmd)
 }
@@ -33,7 +31,7 @@ var VersionCmd = &cobra.Command{
 	Short: "Display the version number of this tool",
 	Long:  `Display the version number of this tool`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("cerberus-cli " + version)
+		fmt.Println(tool.CliVersionMsg)
 	},
 }
 
