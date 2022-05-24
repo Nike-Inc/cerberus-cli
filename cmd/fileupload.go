@@ -25,7 +25,7 @@ import (
 )
 
 var fileuploadCmd = &cobra.Command{
-	Use:   "upload <local source filepath> <destination secure file path>",
+	Use:   "upload <destination secure file path> <local source filepath>",
 	Short: "upload a specific file to an existing or new secure file path",
 	Long:  "upload a specific file to an existing or new secure file path",
 	Args:  cobra.ExactArgs(2),
