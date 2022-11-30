@@ -152,6 +152,7 @@ Displays all possible commands that can be performed on secrets
     to write secrets. The secure data path can already exist in an SDB, or can be a completely new path. If an entry's 
     key already exists in the path, it will be overwritten with this command. A success/failure message will be 
     displayed in the terminal.
+    Adding the `-m, --merge` flag will change the behavior to merge the pairs into the existing entry.
     
     Example: `$ cerberus secret write app/mysdb/mysecret -e username=foo -e password=bar`
     

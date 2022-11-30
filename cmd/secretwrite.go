@@ -19,6 +19,7 @@ package cmd
 import (
 	"cerberus-cli/client"
 	"fmt"
+	"github.com/Nike-Inc/cerberus-go-client/v3/cerberus"
 	"github.com/spf13/cobra"
 	"strings"
 )
@@ -39,12 +40,22 @@ var secretwriteCmd = &cobra.Command{
 			return err
 		}
 
-		data, err := mapEntries(entries)
+		merge, err := cmd.Flags().GetBool("merge")
 		if err != nil {
 			return err
 		}
 
-		err = WriteSecret(path, data)
+		cl, err := client.GetClient()
+		if err != nil {
+			return err
+		}
+
+		data, err := getFinalData(cl, path, entries, merge)
+		if err != nil {
+			return err
+		}
+
+		err = SecretWrite(cl, path, data)
 		if err != nil {
 			return err
 		}
@@ -59,6 +70,8 @@ func init() {
 	secretwriteCmd.Flags().StringArrayP("entry", "e", []string{}, "use this flag for each "+
 		"entry to add to the new secret, in the required format of KEY=VALUE")
 	secretwriteCmd.MarkFlagRequired("entry")
+	secretwriteCmd.Flags().BoolP("merge", "m", false, "merge key-value pairs instead "+
+		"of overwriting, off by default")
 }
 
 func WriteSecret(path string, data map[string]interface{}) error {
@@ -67,15 +80,20 @@ func WriteSecret(path string, data map[string]interface{}) error {
 		return err
 	}
 
-	_, err = cl.Secret().Write(path, data)
+	return SecretWrite(cl, path, data)
+}
+
+func SecretWrite(cl *cerberus.Client, path string, data map[string]interface{}) error {
+	_, err := cl.Secret().Write(path, data)
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func mapEntries(entries []string) (map[string]interface{}, error) {
-	data := make(map[string]interface{})
+func mapEntries(entries []string,
+	data map[string]interface{}) (map[string]interface{}, error) {
+
 	for _, item := range entries {
 		split := strings.SplitN(item, "=", EXPECTED_KV_PAIR)
 		if len(split) != EXPECTED_KV_PAIR {
@@ -84,4 +102,26 @@ func mapEntries(entries []string) (map[string]interface{}, error) {
 		data[split[0]] = split[1]
 	}
 	return data, nil
+}
+
+func getFinalData(cl *cerberus.Client, path string,
+	entries []string, merge bool) (map[string]interface{}, error) {
+
+	existingSecretData := make(map[string]interface{})
+	if merge {
+		existingSecret, err := cl.Secret().Read(path)
+		if err != nil {
+			return nil, err
+		}
+		if existingSecret != nil {
+			existingSecretData = existingSecret.Data
+		}
+	}
+
+	data, err := mapEntries(entries, existingSecretData)
+	if err != nil {
+		return nil, err
+	}
+
+	return data, err
 }
